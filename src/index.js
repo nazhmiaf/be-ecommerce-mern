@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import productRouter from './routes/productRouter.js';
 import orderRouter from './routes/orderRouter.js';
 import helmet from 'helmet'
-import ExpressMongoSanitize from 'express-mongo-sanitize';
+// import ExpressMongoSanitize from 'express-mongo-sanitize';
 
 
 dotenv.config();
@@ -16,7 +16,7 @@ const app = express();
 const PORT = process.env.PORT ;
 
 app.use(helmet())
-app.use(ExpressMongoSanitize())
+// app.use(ExpressMongoSanitize())
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
