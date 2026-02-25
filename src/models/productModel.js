@@ -29,10 +29,9 @@ const productSchema = new mongoose.Schema({
     default: 0,
     set: v => v ?? 0
   },
-  image : {
-    type : String,
-    default : '../assets/images/placeholder.jpg',
-    set: v => v && v.trim() !== '' ? v : '../assets/images/placeholder.jpg'
+  images: {
+    type: [String], 
+    default: ["/images/placeholder.jpg"],
   },
   createdAt : {
     type : Date,
