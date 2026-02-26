@@ -92,7 +92,7 @@ export const FileUpload = asyncHandler(async (req, res) => {
   const stream = cloudinary.uploader.upload_stream(
     {
       folder: "uploads",
-      allowed_formats: ["jpg", "jpeg", "png"],
+      allowed_formats: ["jpg", "jpeg", "png", "webp"],
     },
     (err, result) => {
       if (err) {
