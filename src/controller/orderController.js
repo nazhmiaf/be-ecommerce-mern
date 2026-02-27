@@ -43,6 +43,12 @@ export const CreateOrder = asyncHandler(async (req, res) => {
     user: req.user.id,
   });
 
+  for (const item of orderItem) {
+    await Product.findByIdAndUpdate(item.product, {
+      $inc: { sold: item.quantity },
+    });
+  }
+
   return res.status(201).json({
     total,
     order,
@@ -67,10 +73,10 @@ export const detailOrder = asyncHandler(async (req, res) => {
 });
 
 export const currentOrder = asyncHandler(async (req, res) => {
-  const orders = await Order.findOne({'user' : req.user.id})
-  res.status(201).json({ 
-    data : orders,
-    mesasge : 'Detail order fetched'
+  const orders = await Order.findOne({ user: req.user.id });
+  res.status(201).json({
+    data: orders,
+    mesasge: "Detail order fetched",
   });
 });
 

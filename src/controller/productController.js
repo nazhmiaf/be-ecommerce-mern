@@ -109,6 +109,22 @@ export const FileUpload = asyncHandler(async (req, res) => {
       })
     },
   );
-
   stremifier.createReadStream(req.file.buffer).pipe(stream)
 });
+
+export const getPopularProducts = asyncHandler(async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 12;
+    const products  = await Product.find().sort({sold : -1}).limit(limit)
+
+    res.status(200).json({
+      message: "Popular products fetched successfully",
+      data: products
+    })
+  } catch (error) {
+    res.status(500).json({
+      message: "Failed to fetch popular products",
+      error: error.message
+    })
+  }
+})

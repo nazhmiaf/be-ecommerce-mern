@@ -7,6 +7,7 @@ import {
   updateProduct,
   deleteProduct,
   FileUpload,
+  getPopularProducts,
 } from "../controller/productController.js";
 import { upload } from "../utils/uploadFileHandler.js";
 
@@ -14,6 +15,7 @@ const router = express.Router();
 
 router.post("/", authMiddleware, adminMiddleware, createProduct);
 router.get("/", getProducts);
+router.get('/popular', getPopularProducts)
 router.get("/:id", detailProduct);
 router.put("/:id", authMiddleware, adminMiddleware, updateProduct);
 router.delete("/:id", authMiddleware, adminMiddleware, deleteProduct);
